@@ -88,7 +88,7 @@ async function main() {
       day: 'numeric',
       weekday: 'long',
     });
-    const message = `### 📅 日付: ${currentDate}<@${userId}>\n\n### 📝 最新のTodoページ: \n${page.url}\n### 📋 本日のタスク:\n${pageContent}\n\n`;
+    const message = `### 📅 日付: ${currentDate}<@${"852712219132297227"}>\n\n### 📝 最新のTodoページ: \n${page.url}\n### 📋 本日のタスク:\n${pageContent}\n\n`;
     await sendToDiscord(message);
   } catch (error) {
     console.error('エラー:', error);
