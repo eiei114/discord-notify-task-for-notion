@@ -7,7 +7,7 @@ dotenv.config();
 const notionToken = process.env.NOTION_TOKEN;
 const notionDatabaseId = process.env.NOTION_DATABASE_ID;
 const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
-const userId = process.env.USER_ID;
+const userId = String(process.env.USER_ID);
 
 async function getLatestTodoPage() {
   const response = await axios.post(
