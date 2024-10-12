@@ -1,0 +1,36 @@
+name: Notify Discord from Notion
+
+on:
+  schedule:
+    - cron: '30 22 * * *' # 7:30 JST (22:30 UTC)
+    - cron: '0 1 * * *' # 10:00 JST (01:00 UTC)
+    - cron: '0 3 * * *' # 12:00 JST (03:00 UTC)
+    - cron: '0 6 * * *' # 15:00 JST (06:00 UTC)
+    - cron: '0 9 * * *' # 18:00 JST (09:00 UTC)
+    - cron: '0 13 * * *' # 22:00 JST (13:00 UTC)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npx tsc
+
+      - name: Run the script
+        run: node dist/index.js
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
